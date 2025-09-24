@@ -1,0 +1,31 @@
+# Node/React
+**/node_modules/
+**/dist/
+**/build/
+**/.env.local
+**/.env.development.local
+**/.env.test.local
+**/.env.production.local
+**/*.log
+**/pnpm-lock.yaml
+
+# Python
+**/__pycache__/
+**/*.pyc
+**/*.pyo
+**/*.pyd
+**/.env
+**/**/venv/
+**/.envrc
+**/.mypy_cache/
+**/.pytest_cache/
+**/.coverage
+**/htmlcov/
+**/*.sqlite3
+
+# Docker
+*.pid
+db_data/
+
+# VSCode
+.vscode/
