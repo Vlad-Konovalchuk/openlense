@@ -1,0 +1,33 @@
+export const searchMockResults = [
+    {
+        id: '1',
+        title: 'Bitcoin (BTC)',
+        description: 'Digital currency',
+        price: 43250,
+        priceChange: 2.5,
+        source: 'coingecko',
+        sourceLabel: 'CoinGecko',
+        date: '2 hours ago',
+        link: 'https://coingecko.com',
+    },
+    {
+        id: '2',
+        title: 'BMW X5 2020',
+        description: 'SUV, 3.0L, Automatic',
+        price: 45000,
+        source: 'auto.ria',
+        sourceLabel: 'AUTO.RIA',
+        date: '5 hours ago',
+        link: 'https://auto.ria.com',
+    },
+    {
+        id: '3',
+        title: 'iPhone 14 Pro',
+        description: '128GB, Space Black',
+        price: 899,
+        source: 'olx',
+        sourceLabel: 'OLX',
+        date: '1 day ago',
+        link: 'https://olx.com',
+    },
+];
