@@ -15,4 +15,3 @@ class Source(Base):
     filters_schema = Column(JSON, nullable=False)
     mapping = Column(JSON, nullable=False)
     created_at = Column(TIMESTAMP, nullable=False)
-    new_column = Column(BigInteger, nullable=True)
