@@ -4,6 +4,7 @@ from pydantic_settings import BaseSettings
 class Settings(BaseSettings):
     app_name: str = "OpenLense Backend"
     database_url: str
+    cmc_api_key: str
     db_type: str
     debug: bool = True
     

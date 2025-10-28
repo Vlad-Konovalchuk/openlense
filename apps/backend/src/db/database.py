@@ -6,7 +6,6 @@ from sqlalchemy.orm import sessionmaker
 from fastapi import Depends
 from src.core.config import settings
 from .sources import Source
-from .presets import Preset
 
 connect_args = (
     {"check_same_thread": False} if settings.database_url.startswith("sqlite") else {}
