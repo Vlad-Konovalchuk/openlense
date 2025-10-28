@@ -3,7 +3,9 @@ from pydantic_settings import BaseSettings
 
 class Settings(BaseSettings):
     app_name: str = "OpenLense Backend"
-    database_url: str = "postgresql+psycopg2://user:password@localhost:5432/openlense"
+    database_url: str
+    db_type: str
+    debug: bool = True
     
     class Config:
         env_file = ".env"
