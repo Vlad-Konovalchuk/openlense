@@ -8,15 +8,21 @@
         "dev": "vite",
         "build": "vite build",
         "preview": "vite preview",
-        "lint": "eslint . --ext .ts,.tsx"
+        "lint": "eslint . --ext .ts,.tsx",
+        "lint:fix": "eslint src --ext .js,.jsx,.ts,.tsx --fix",
+        "format": "prettier --write \"src/**/*.{js,jsx,ts,tsx,css,scss,md,json}\"",
+        "format:check": "prettier --check \"src/**/*.{js,jsx,ts,tsx,css,scss,md,json}\""
     },
     "dependencies": {
         "@emotion/react": "^11.14.0",
         "@emotion/styled": "^11.14.1",
         "@mui/icons-material": "^7.3.2",
         "@mui/material": "^7.3.2",
+        "@tanstack/react-query": "^5.90.5",
         "@tanstack/react-router": "^1.132.23",
         "@tanstack/react-router-devtools": "^1.132.23",
+        "axios": "^1.12.2",
+        "lucide-react": "^0.548.0",
         "react": "^19.1.1",
         "react-dom": "^19.1.1",
         "react-hook-form": "^7.63.0",
@@ -31,6 +37,7 @@
         "autoprefixer": "^10.4.21",
         "eslint": "^9.36.0",
         "postcss": "^8.5.6",
+        "prettier": "^3.6.2",
         "tailwindcss": "^4.1.13",
         "typescript": "^5.9.2",
         "vite": "^7.1.7"
