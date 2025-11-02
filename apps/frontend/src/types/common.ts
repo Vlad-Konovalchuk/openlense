@@ -1,12 +1,12 @@
 // Basic types
 
 export type Option = {
-    label: string;
-    value: string;
+  label: string;
+  value: string;
 };
 
-export interface Pagination {
-    page: number;
-    pageSize: number;
-    total: number;
-}
+export type Pagination = {
+  page: number;
+  pageSize: number;
+  total: number;
+};
