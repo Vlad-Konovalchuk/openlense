@@ -2,10 +2,10 @@ import type { Pagination as IPaginationProps } from '../types/common';
 import MuiPagination from '@mui/material/Pagination';
 import Stack from '@mui/material/Stack';
 
-interface PaginationProps {
+type PaginationProps = {
   pagination: IPaginationProps;
   onPageChange: (page: number) => void;
-}
+};
 
 const Pagination = ({ pagination, onPageChange }: PaginationProps) => {
   const { page, total, pageSize } = pagination;

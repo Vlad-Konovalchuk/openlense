@@ -1,10 +1,10 @@
 import ToggleButton from '@mui/material/ToggleButton';
 import ToggleButtonGroup from '@mui/material/ToggleButtonGroup';
 
-interface ResultsViewToggleProps {
+type ResultsViewToggleProps = {
   view: 'list' | 'grouped';
   onChange: (view: 'list' | 'grouped') => void;
-}
+};
 
 const ResultsViewToggle = ({ view, onChange }: ResultsViewToggleProps) => (
   <ToggleButtonGroup

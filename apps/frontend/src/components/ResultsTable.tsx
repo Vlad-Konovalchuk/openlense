@@ -9,9 +9,9 @@ import OpenInNewIcon from '@mui/icons-material/OpenInNew';
 import FavoriteBorderIcon from '@mui/icons-material/FavoriteBorder';
 import Chip from '@mui/material/Chip';
 
-interface ResultsTableProps {
+type ResultsTableProps = {
   results: SearchResult[];
-}
+};
 
 const ResultsTable = ({ results }: ResultsTableProps) => (
   <Table

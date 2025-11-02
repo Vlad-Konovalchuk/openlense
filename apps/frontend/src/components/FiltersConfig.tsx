@@ -9,12 +9,12 @@ import {
 } from '@mui/material';
 import type { ApiFiltersSupport, BackendDefaultFilters } from '../types/api';
 
-interface FiltersConfigProps {
+type FiltersConfigProps = {
   apiFilters: ApiFiltersSupport;
   setApiFilters: (next: ApiFiltersSupport) => void;
   backendDefaults: BackendDefaultFilters;
   setBackendDefaults: (next: BackendDefaultFilters) => void;
-}
+};
 
 const knownFilters: { key: keyof ApiFiltersSupport; label: string }[] = [
   { key: 'title', label: 'Title search' },

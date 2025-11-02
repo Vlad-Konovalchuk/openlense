@@ -7,11 +7,11 @@ import MenuItem from '@mui/material/MenuItem';
 import InputLabel from '@mui/material/InputLabel';
 import FormControl from '@mui/material/FormControl';
 
-interface FilterFormProps {
+type FilterFormProps = {
   filter: Filter;
   categories: Option[];
   onChange: (field: keyof Filter, value: any) => void;
-}
+};
 
 const FilterForm = ({ filter, categories, onChange }: FilterFormProps) => (
   <Box

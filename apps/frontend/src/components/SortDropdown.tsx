@@ -4,11 +4,11 @@ import MenuItem from '@mui/material/MenuItem';
 import FormControl from '@mui/material/FormControl';
 import InputLabel from '@mui/material/InputLabel';
 
-interface SortDropdownProps {
+type SortDropdownProps = {
   options: Option[];
   value: string;
   onChange: (value: string) => void;
-}
+};
 
 const SortDropdown = ({ options, value, onChange }: SortDropdownProps) => (
   <FormControl size='small' sx={{ minWidth: 140 }}>

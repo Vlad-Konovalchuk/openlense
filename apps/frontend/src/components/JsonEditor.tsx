@@ -1,10 +1,10 @@
-interface Props {
+type JsonEditorProps = {
   value: string;
   onChange: (next: string) => void;
   onSubmit: () => void;
   errorText?: string;
   isLoading?: boolean;
-}
+};
 
 function JsonEditor({
   value,
@@ -12,7 +12,7 @@ function JsonEditor({
   errorText,
   onSubmit,
   isLoading,
-}: Props) {
+}: JsonEditorProps) {
   return (
     <div className='space-y-4'>
       <div>

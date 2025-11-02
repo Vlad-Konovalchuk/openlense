@@ -1,9 +1,9 @@
 import { FileQuestion } from 'lucide-react';
 
-interface EmptyStateProps {
+type EmptyStateProps = {
   label: string;
   className?: string;
-}
+};
 
 export const EmptyState = ({ label, className = '' }: EmptyStateProps) => {
   return (
