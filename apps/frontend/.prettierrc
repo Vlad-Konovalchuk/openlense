@@ -1,8 +1,7 @@
 {
     "semi": true,
-    "editor.formatOnSave": true,
     "tabWidth": 2,
-    "useTabs": true,
+    "useTabs": false,
     "printWidth": 80,
     "singleQuote": true,
     "trailingComma": "all",
