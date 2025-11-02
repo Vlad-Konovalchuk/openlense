@@ -18,7 +18,7 @@ const CronSetup = ({ value, onChange, onManualTrigger }: CronSetupProps) => {
   return (
     <Box>
       <Grid container spacing={2} alignItems='center'>
-        <Grid item>
+        <Grid>
           <FormControlLabel
             control={
               <Switch
@@ -31,7 +31,7 @@ const CronSetup = ({ value, onChange, onManualTrigger }: CronSetupProps) => {
             label='Enable cron'
           />
         </Grid>
-        <Grid item>
+        <Grid>
           <Typography>Frequency</Typography>
           <Select
             size='small'
@@ -48,7 +48,7 @@ const CronSetup = ({ value, onChange, onManualTrigger }: CronSetupProps) => {
           </Select>
         </Grid>
         {onManualTrigger && (
-          <Grid item>
+          <Grid>
             <Typography
               variant='body2'
               sx={{ cursor: 'pointer' }}
