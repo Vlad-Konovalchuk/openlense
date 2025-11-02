@@ -1,5 +1,5 @@
-import type { Filter } from '../types/search';
-import type { Option } from '../types/common';
+import type { Filter } from '@/types/search';
+import type { Option } from '@/types/common';
 import Box from '@mui/material/Box';
 import TextField from '@mui/material/TextField';
 import Select from '@mui/material/Select';

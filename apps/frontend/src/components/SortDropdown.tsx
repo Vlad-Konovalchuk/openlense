@@ -1,4 +1,4 @@
-import type { Option } from '../types/common';
+import type { Option } from '@/types/common';
 import Select from '@mui/material/Select';
 import MenuItem from '@mui/material/MenuItem';
 import FormControl from '@mui/material/FormControl';

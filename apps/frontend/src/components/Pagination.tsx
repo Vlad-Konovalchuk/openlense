@@ -1,4 +1,4 @@
-import type { Pagination as IPaginationProps } from '../types/common';
+import type { Pagination as IPaginationProps } from '@/types/common';
 import MuiPagination from '@mui/material/Pagination';
 import Stack from '@mui/material/Stack';
 

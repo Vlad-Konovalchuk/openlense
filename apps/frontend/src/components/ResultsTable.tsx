@@ -1,4 +1,4 @@
-import type { SearchResult } from '../types/search';
+import type { SearchResult } from '@/types/search';
 import Table from '@mui/material/Table';
 import TableHead from '@mui/material/TableHead';
 import TableRow from '@mui/material/TableRow';

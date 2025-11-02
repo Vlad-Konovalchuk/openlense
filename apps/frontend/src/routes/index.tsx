@@ -1,12 +1,12 @@
 import { createFileRoute } from '@tanstack/react-router';
 import Button from '@mui/material/Button';
-import SourceSelector from '../components/SourceSelector';
-import FilterForm from '../components/FilterForm';
-import ResultsViewToggle from '../components/ResultsViewToggle';
-import SortDropdown from '../components/SortDropdown';
-import ResultsTable from '../components/ResultsTable';
-import Pagination from '../components/Pagination';
-import { searchMockResults } from '../mocks/searchMocks';
+import SourceSelector from '@/components/SourceSelector';
+import FilterForm from '@/components/FilterForm';
+import ResultsViewToggle from '@/components/ResultsViewToggle';
+import SortDropdown from '@/components/SortDropdown';
+import ResultsTable from '@/components/ResultsTable';
+import Pagination from '@/components/Pagination';
+import { searchMockResults } from '@/mocks/searchMocks';
 
 export const Route = createFileRoute('/')({
   component: HomePage,

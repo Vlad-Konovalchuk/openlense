@@ -1,5 +1,5 @@
 import type { FC } from 'react';
-import Header from '../components/Header';
+import Header from '@/components/Header';
 
 const MainLayout: FC<{ children?: React.ReactNode }> = ({ children }) => (
   <div className='min-h-screen bg-gray-50'>

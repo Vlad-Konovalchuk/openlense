@@ -7,7 +7,7 @@ import {
   TextField,
   Paper,
 } from '@mui/material';
-import type { ApiFiltersSupport, BackendDefaultFilters } from '../types/api';
+import type { ApiFiltersSupport, BackendDefaultFilters } from '@/types/api';
 
 type FiltersConfigProps = {
   apiFilters: ApiFiltersSupport;

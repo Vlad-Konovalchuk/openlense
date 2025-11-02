@@ -3,16 +3,16 @@ import { useEffect, useState } from 'react';
 import DeleteIcon from '@mui/icons-material/Delete';
 import InfoOutlineIcon from '@mui/icons-material/InfoOutline';
 import { Tooltip } from '@mui/material';
-import { SourcesList } from '../components/SourcesList';
+import { SourcesList } from '@/components/SourcesList';
 import {
   useCreateSource,
   useDeleteSource,
   useSourcesList,
   type QueryParamDescriptor,
   type FilterDescriptor,
-} from '../services/sources';
-import JsonEditor from '../components/JsonEditor';
-import InputField from '../components/InputField';
+} from '@/services/sources';
+import JsonEditor from '@/components/JsonEditor';
+import InputField from '@/components/InputField';
 const FORM_ID = 'api_source_creation_form';
 
 export const Route = createFileRoute('/admin')({

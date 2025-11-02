@@ -11,7 +11,7 @@ import {
   Button,
 } from '@mui/material';
 import { Add as AddIcon, Delete as DeleteIcon } from '@mui/icons-material';
-import type { FieldMappingItem } from '../types/api';
+import type { FieldMappingItem } from '@/types/api';
 
 type FieldMappingTableProps = {
   value: FieldMappingItem[];
