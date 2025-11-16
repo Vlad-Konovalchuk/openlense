@@ -73,13 +73,12 @@ async def search_source(
     # searchService=Depends(SearchService),
 ):
     try:
-
         source = await sourceService.get_source_by_id(source_id)
 
         if source is None:
             raise HTTPException(status_code=400, detail="Invalid source ID")
 
-        searchService = SearchService(source)
+        searchService = SearchService(source.model_dump())
         default_filters = (
             payload.filters.default_filters if payload and payload.filters else {}
         )

@@ -15,11 +15,11 @@ class SearchService:
            endpoint, method, params, headers, mapping, filters
         """
         self.source = source_record
-        self.mapping = source_record.mapping or {}
-        self.filter_descriptors = source_record.backend_filters or []
+        self.mapping = source_record.get("mapping") or {}
+        self.filter_descriptors = source_record.get("backend_filters") or []
 
     async def fetch_raw(self, api_filters: Dict[str, Any]) -> List[Dict[str, Any]]:
-        req = build_request_from_source(self.source, api_filters or {})
+        req = build_request_from_source(source=self.source, user_filters=api_filters)
         raw = await http_client.fetch(req)
 
         # Handle common API response patterns:
@@ -54,7 +54,6 @@ class SearchService:
         """
         # Step 1: Fetch raw data from external API with api_filters as query params
         raw_items = await self.fetch_raw(api_filters)
-
         # Step 2: Apply backend filtering using default_filters on raw response data
         # This allows complex operations (gt, lt, contains) that the external API may not support
         filtered_raw = apply_filters(

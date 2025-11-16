@@ -17,21 +17,20 @@ class BuiltRequest(BaseModel):
     data: Optional[Any] = None
 
 
-def build_request_from_source(payload: RequestBuilderPayload) -> BuiltRequest:
+def build_request_from_source(
+    source: Dict[str, Any], user_filters: Dict[str, Any]
+) -> BuiltRequest:
     """
-    Build an HTTP request from a Source model and user filters.
-    Assumes Source is always a Pydantic model (Pydantic v2).
+    Build an HTTP request from a source dict and user filters.
     """
-    source = payload.source
-    user_filters = payload.user_filters
-    source_dict = source.model_dump()
+    source_dict = source
     url = source_dict["endpoint"]
     method = source_dict["method"]
 
     # Start with default headers
     headers: Dict[str, str] = {
         "Accepts": "application/json",
-        "X-CMC_PRO_API_KEY": os.getenv("CMC_API_KEY", ""),
+        "X-CMC_PRO_API_KEY": "{{CMC_API_KEY}}",
     }
 
     # Merge in any custom headers from source config
