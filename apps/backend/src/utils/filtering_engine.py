@@ -1,15 +1,18 @@
 from typing import Any, Dict, List
 import operator
-import re
 import jmespath
 from functools import lru_cache
 
+from src.utils.filtering.handlers import (
+    _eq,
+    _neq,
+    _contains,
+    _startswith,
+    _endswith,
+    _regex,
+    _safe_numeric_compare,
+)
 
-# Operator aliases for friendlier admin UI names
-OP_ALIASES: Dict[str, str] = {
-    "equals": "eq",
-    "not_equals": "neq",
-}
 
 # Operator labels for frontend display
 OPERATOR_LABELS: Dict[str, str] = {
@@ -25,111 +28,8 @@ OPERATOR_LABELS: Dict[str, str] = {
     "regex": "Matches regex",
 }
 
-
-def _format_filter_log(
-    filters: Dict[str, Any], descriptors: List[Dict[str, Any]]
-) -> str:
-    """Format filter information for readable logging."""
-    lines = ["Applying filters:"]
-
-    # Create a descriptor lookup for labels
-    desc_lookup = {d.get("key"): d for d in (descriptors or [])}
-
-    for field_key, conditions in filters.items():
-        desc = desc_lookup.get(field_key, {})
-        label = desc.get("label", field_key)
-        lines.append(f"  - {label} ({field_key}):")
-
-        if isinstance(conditions, dict):
-            for op, value in conditions.items():
-                op_label = OPERATOR_LABELS.get(op, op)
-                lines.append(f"      {op_label}: {value}")
-        else:
-            lines.append(f"      {conditions}")
-
-    return "\n".join(lines)
-
-
-def _to_float(val: Any) -> float:
-    """Convert value to float safely."""
-    if isinstance(val, (int, float)):
-        return float(val)
-    return float(str(val))
-
-
-def _safe_numeric_compare(op_func, left: Any, right: Any) -> bool:
-    """Safely compare two values as numbers."""
-    try:
-        return op_func(_to_float(left), _to_float(right))
-    except (ValueError, TypeError):
-        return False
-
-
-def _normalize_string(value: str) -> str:
-    """Normalize string for case-insensitive comparison."""
-    return str(value).lower()
-
-
-def _contains(value: Any, pattern: Any) -> bool:
-    """Check if value contains pattern(s)."""
-    if value is None:
-        return False
-    normalized_value = _normalize_string(value)
-    if isinstance(pattern, list):
-        return any(_normalize_string(p) in normalized_value for p in pattern)
-    return _normalize_string(pattern) in normalized_value
-
-
-def _startswith(value: Any, pattern: Any) -> bool:
-    """Check if value starts with pattern(s)."""
-    if value is None:
-        return False
-    normalized_value = _normalize_string(value)
-    if isinstance(pattern, list):
-        return any(normalized_value.startswith(_normalize_string(p)) for p in pattern)
-    return normalized_value.startswith(_normalize_string(pattern))
-
-
-def _endswith(value: Any, pattern: Any) -> bool:
-    """Check if value ends with pattern(s)."""
-    if value is None:
-        return False
-    normalized_value = _normalize_string(value)
-    if isinstance(pattern, list):
-        return any(normalized_value.endswith(_normalize_string(p)) for p in pattern)
-    return normalized_value.endswith(_normalize_string(pattern))
-
-
-def _regex(value: Any, pattern: Any) -> bool:
-    """Check if value matches regex pattern(s)."""
-    if value is None:
-        return False
-    try:
-        if isinstance(pattern, list):
-            return any(
-                re.search(str(p), str(value), flags=re.IGNORECASE) is not None
-                for p in pattern
-            )
-        return re.search(str(pattern), str(value), flags=re.IGNORECASE) is not None
-    except re.error:
-        return False
-
-
-def _eq(left: Any, right: Any) -> bool:
-    """Check equality (numeric when possible, else string)."""
-    try:
-        return _to_float(left) == _to_float(right)
-    except (ValueError, TypeError):
-        return str(left) == str(right)
-
-
-def _neq(left: Any, right: Any) -> bool:
-    """Check inequality."""
-    return not _eq(left, right)
-
-
 # Operator registry mapping to functions
-OPS: Dict[str, Any] = {
+OPERATORS_HANDLERS: Dict[str, Any] = {
     "eq": _eq,
     "neq": _neq,
     "gt": lambda left, right: _safe_numeric_compare(operator.gt, left, right),
@@ -171,7 +71,7 @@ def match_single(value: Any, cond: Any, field_type: str | None = None) -> bool:
 
     if isinstance(cond, dict):
         for raw_op, operand in cond.items():
-            op = OP_ALIASES.get(raw_op, raw_op)
+            op = raw_op
 
             # Validate operator against field type if provided
             if field_type:
@@ -179,17 +79,17 @@ def match_single(value: Any, cond: Any, field_type: str | None = None) -> bool:
                 if op not in allowed:
                     return False
 
-            # Apply operator if it exists
-            if op in OPS:
-                if not OPS[op](value, operand):
+            # if it exists apply operator 
+            if op in OPERATORS_HANDLERS:
+                if not OPERATORS_HANDLERS[op](value, operand):
                     return False
             else:
                 # Unknown operator -> fail-safe
                 return False
         return True
     else:
-        # Primitive condition means equality check
-        return OPS["eq"](value, cond)
+        # Primitive condition use simple equality check
+        return OPERATORS_HANDLERS["eq"](value, cond)
 
 
 def apply_filters(
